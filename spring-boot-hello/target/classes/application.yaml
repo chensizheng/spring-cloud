@@ -1,0 +1,19 @@
+server:
+  port: 8080
+management:
+  endpoint:
+    health:
+      enabled: true
+      show-details: always
+    shutdown:
+      enabled: true
+    beans:
+      enabled: true
+  endpoints:
+    web:
+      base-path:
+  security:
+    enabled: false
+info:
+  app:
+    name: spring-boot-hello
