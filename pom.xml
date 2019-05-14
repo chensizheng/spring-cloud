@@ -16,6 +16,8 @@
   <modules>
       <module>spring-cloud-eureka-server</module>
       <module>ribbon-consumer</module>
+      <module>feign-consumer</module>
+      <module>hello-service-api</module>
   </modules>
 
   <name>spring-cloud</name>
