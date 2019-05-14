@@ -1,0 +1,39 @@
+management:
+  endpoint:
+    health:
+      enabled: true
+      show-details: always
+    shutdown:
+      enabled: true
+    beans:
+      enabled: true
+  endpoints:
+    web:
+      base-path:
+  security:
+    enabled: false
+spring:
+  application:
+    name: hello-service
+eureka:
+  # 服务注册类配置
+  client:
+    service-url:
+      defaultZone: http://localhost:1111/eureka/
+#    registry-fetch-interval-seconds: 5 #默认30s，从注册中心获取服务注册信息的间隔时间
+#    healthcheck:
+#      enabled: true # 默认是通过心跳检测的形式，但心跳检测无法正常获取服务实例依赖的数据库、mq等状态，我们将这些状态通过actuator的/health端点进行监控
+  # 服务实例类配置
+  instance:
+#    #心跳检测默认30s,解决Eureka服务注册慢的问题
+#    lease-renewal-interval-in-seconds: 5
+#    # 默认90s,服务端在收到最后一次心跳之后，等待的上限时间，超过改时间，服务端会将改实录从服务清单中剔除。
+#    lease-expiration-duration-in-seconds: 30
+    instance-id: ${spring.application.name}:${server.port}
+
+    # 默认/health，且HTTP请求，绝对路径
+    # 如果为应用配置了的context-path，要在health-check-url-path中加上context-path
+    # 如果自定义了endpoint.health.path=/MyHealth,要在health-check-url-path中指明${endpoint.health.path}
+    # 如果是使用HTTPS，要使用health-check-url配置相对路径
+#    health-check-url-path: /health
+

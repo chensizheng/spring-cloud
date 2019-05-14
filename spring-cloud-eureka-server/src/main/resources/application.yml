@@ -1,0 +1,19 @@
+spring:
+  application:
+    name: eureka-server
+
+server:
+  port: 1111
+eureka:
+  instance:
+    hostname: localhost
+
+  client:
+    service-url:
+      defaultZone: http://localhost:1111/eureka/
+    register-with-eureka: false
+    fetch-registry: false
+  server:
+    enable-self-preservation: false #关闭注册中心的"自我保护"功能，防止关闭的实例无法被服务注册中心剔除
+    eviction-interval-timer-in-ms: 60000 #清理时间，默认60*1000 ms
+

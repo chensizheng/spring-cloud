@@ -3,14 +3,11 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
-		<groupId>org.springframework.boot</groupId>
-		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>1.5.9.RELEASE</version>
-		<relativePath/> <!-- lookup parent from repository -->
+		<artifactId>spring-cloud</artifactId>
+		<groupId>com.chen</groupId>
+		<version>1.0-SNAPSHOT</version>
 	</parent>
-	<groupId>com.chen</groupId>
 	<artifactId>spring-boot-hello</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
 	<name>spring-boot-hello</name>
 	<description>Demo project for Spring Boot</description>
 
@@ -32,6 +29,10 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-eureka</artifactId>
 		</dependency>
 	</dependencies>
 
