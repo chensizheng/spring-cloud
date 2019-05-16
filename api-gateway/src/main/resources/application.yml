@@ -1,0 +1,67 @@
+spring:
+  application:
+    name: api-gateway
+server:
+  port: 5555
+
+zuul:
+  routes:
+    # 传统方式单实例配置
+    api-a-url:
+      path: /api-a-url/**
+      url: http://localhost:8080
+    # 整合eureka服务发现的方式
+    api-a:
+      path: /api-a/**
+      serviceId: hello-service
+    api-b:
+      path: /api-b/**
+      serviceId: feign-consumer
+    # 整合eureka服务发现的方式的一种配法：
+    # zuul.routes.<serviceId> = 路由规则  即：完整服务名作为路由前缀。
+    hello-service: /hello-service/**
+
+
+ # Zuul默认不传递Cookie Set-Cookie Authorization三个属性到下游web系统
+ # 如果我们下游的系统使用了sprig security / Shiro等鉴权框架，Cookie信息将
+ # 无法传递，我们可以通过配置空参数来覆盖默认配置
+  sensitive-headers:
+ # 但这种方式并不推荐，这样会打破所有的默认配置，毕竟大多数API都是无状态的
+ # 建议（1）zuul.routes.<router>.custom-sensitive-headers=true
+ # 建议（2）zuul.routes.<router>.sensitive-headers=
+ # 仅对指定的web应用开启敏感信息传递，不至于引起其他服务的信息泄露问题。
+
+
+ # 使用了某些sprig security / Shiro等鉴权框架完成了web的访问登录后，
+ # 发现URL被302重定向到了具体的服务实例ip:port上了，解决办法：
+  add-host-header: true
+
+
+# 禁用默认路由配置begin
+#  ignored-services: *
+# 禁用默认路由配置end
+
+    # zuul默认服务路由的规则配置： serviceId: /serviceId/**
+
+
+
+#   传统方式 多实例配置 begin
+#zuul:
+#  routes:
+#    hello-service:
+#      path: /hello-service/**
+#      serviceId: hello-service
+#ribbon:
+#  eureka:
+#    enabled: false
+#hello-service:
+#  ribbon:
+#    listOfServers: http://localhost:8080,http://localhost:8081
+#   传统方式 多实例配置 end
+
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:1111/eureka/
+

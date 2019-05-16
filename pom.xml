@@ -18,6 +18,7 @@
       <module>ribbon-consumer</module>
       <module>feign-consumer</module>
       <module>hello-service-api</module>
+      <module>api-gateway</module>
   </modules>
 
   <name>spring-cloud</name>
