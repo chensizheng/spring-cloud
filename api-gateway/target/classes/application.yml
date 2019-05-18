@@ -21,6 +21,7 @@ zuul:
     # zuul.routes.<serviceId> = 路由规则  即：完整服务名作为路由前缀。
     hello-service: /hello-service/**
 
+
  # Zuul默认不传递Cookie Set-Cookie Authorization三个属性到下游web系统
  # 如果我们下游的系统使用了sprig security / Shiro等鉴权框架，Cookie信息将
  # 无法传递，我们可以通过配置空参数来覆盖默认配置
@@ -29,6 +30,7 @@ zuul:
  # 建议（1）zuul.routes.<router>.custom-sensitive-headers=true
  # 建议（2）zuul.routes.<router>.sensitive-headers=
  # 仅对指定的web应用开启敏感信息传递，不至于引起其他服务的信息泄露问题。
+
 
  # 使用了某些sprig security / Shiro等鉴权框架完成了web的访问登录后，
  # 发现URL被302重定向到了具体的服务实例ip:port上了，解决办法：
